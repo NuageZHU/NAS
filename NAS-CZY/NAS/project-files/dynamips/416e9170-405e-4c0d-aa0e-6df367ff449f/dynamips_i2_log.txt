@@ -1,0 +1,59 @@
+Mar 15 08:22:30.288 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Mar 15 08:22:30.289 HYPERVISOR: Started on IP = localhost, TCP port = 56925.
+Mar 15 08:22:30.789 HYPERVISOR: exec_cmd: hypervisor version 
+Mar 15 08:22:30.791 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\nelly\GNS3\projects\NAS\project-files\dynamips 
+Mar 15 08:22:30.792 GENERAL: working_dir=C:\Users\nelly\GNS3\projects\NAS\project-files\dynamips
+Mar 15 08:22:30.792 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\nelly\GNS3\projects\NAS\project-files\dynamips\416e9170-405e-4c0d-aa0e-6df367ff449f 
+Mar 15 08:22:30.795 GENERAL: working_dir=C:\Users\nelly\GNS3\projects\NAS\project-files\dynamips\416e9170-405e-4c0d-aa0e-6df367ff449f
+Mar 15 08:22:30.796 HYPERVISOR: exec_cmd: vm create R2 2 c7200 
+Mar 15 08:22:30.799 VM: VM R2 created.
+Mar 15 08:22:30.800 HYPERVISOR: exec_cmd: vm set_con_tcp_port R2 5001 
+Mar 15 08:22:30.800 HYPERVISOR: exec_cmd: c7200 get_mac_addr R2 
+Mar 15 08:22:30.801 HYPERVISOR: exec_cmd: vm get_status R2 
+Mar 15 08:22:30.801 HYPERVISOR: exec_cmd: vm slot_add_binding R2 0 0 C7200-IO-FE 
+Mar 15 08:22:30.802 HYPERVISOR: exec_cmd: vm set_ios R2 C:/Users/nelly/GNS3/images/IOS/c7200-advipservicesk9-mz.152-4.S5.image 
+Mar 15 08:22:30.803 HYPERVISOR: exec_cmd: vm set_exec_area R2 64 
+Mar 15 08:22:30.804 HYPERVISOR: exec_cmd: vm set_ram R2 512 
+Mar 15 08:22:30.804 HYPERVISOR: exec_cmd: vm set_nvram R2 512 
+Mar 15 08:22:30.805 HYPERVISOR: exec_cmd: vm set_disk0 R2 0 
+Mar 15 08:22:30.805 HYPERVISOR: exec_cmd: vm get_status R2 
+Mar 15 08:22:30.806 HYPERVISOR: exec_cmd: vm slot_add_binding R2 1 0 PA-GE 
+Mar 15 08:22:30.807 HYPERVISOR: exec_cmd: vm get_status R2 
+Mar 15 08:22:30.807 HYPERVISOR: exec_cmd: vm slot_add_binding R2 2 0 PA-GE 
+Mar 15 08:22:30.807 HYPERVISOR: exec_cmd: vm get_status R2 
+Mar 15 08:22:30.808 HYPERVISOR: exec_cmd: vm slot_add_binding R2 3 0 PA-GE 
+Mar 15 08:22:30.808 HYPERVISOR: exec_cmd: vm get_status R2 
+Mar 15 08:22:30.809 HYPERVISOR: exec_cmd: vm slot_add_binding R2 4 0 PA-GE 
+Mar 15 08:22:30.872 HYPERVISOR: exec_cmd: vm set_ios R2 C:/Users/nelly/GNS3/images/IOS/c7200-advipservicesk9-mz.152-4.S5.image 
+Mar 15 08:23:27.247 HYPERVISOR: exec_cmd: vm set_ios R2 C:/Users/nelly/GNS3/images/IOS/c7200-advipservicesk9-mz.152-4.S5.image 
+Mar 15 08:40:26.112 HYPERVISOR: exec_cmd: nio create_udp udp-ae6cf18c-cfcd-478a-a28f-51e152144779 10004 127.0.0.1 10005 
+Mar 15 08:40:26.371 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R2 1 0 udp-ae6cf18c-cfcd-478a-a28f-51e152144779 
+Mar 15 08:40:26.372 HYPERVISOR: exec_cmd: vm get_status R2 
+Mar 15 08:40:33.650 HYPERVISOR: exec_cmd: nio create_udp udp-9561d4ec-2fde-4b24-bbcd-29704a084c37 10008 127.0.0.1 10009 
+Mar 15 08:40:33.654 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R2 2 0 udp-9561d4ec-2fde-4b24-bbcd-29704a084c37 
+Mar 15 08:40:33.655 HYPERVISOR: exec_cmd: vm get_status R2 
+Mar 15 08:40:40.909 HYPERVISOR: exec_cmd: nio create_udp udp-ab637ff9-d431-4f38-b008-f3cc64368aed 10014 127.0.0.1 10015 
+Mar 15 08:40:40.913 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R2 3 0 udp-ab637ff9-d431-4f38-b008-f3cc64368aed 
+Mar 15 08:40:40.914 HYPERVISOR: exec_cmd: vm get_status R2 
+Mar 15 08:41:43.841 HYPERVISOR: exec_cmd: vm get_status R2 
+Mar 15 08:41:43.842 HYPERVISOR: exec_cmd: vm slot_remove_nio_binding R2 3 0 
+Mar 15 08:41:43.845 HYPERVISOR: exec_cmd: nio delete udp-ab637ff9-d431-4f38-b008-f3cc64368aed 
+Mar 15 08:41:52.697 HYPERVISOR: exec_cmd: nio create_udp udp-955280e7-a086-463f-b933-01184b2cf85e 10014 127.0.0.1 10015 
+Mar 15 08:41:52.701 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R2 3 0 udp-955280e7-a086-463f-b933-01184b2cf85e 
+Mar 15 08:41:52.701 HYPERVISOR: exec_cmd: vm get_status R2 
+Mar 15 08:42:07.472 HYPERVISOR: exec_cmd: vm get_status R2 
+Mar 15 08:42:07.472 HYPERVISOR: exec_cmd: vm slot_remove_nio_binding R2 3 0 
+Mar 15 08:42:07.474 HYPERVISOR: exec_cmd: nio delete udp-955280e7-a086-463f-b933-01184b2cf85e 
+Mar 15 08:42:12.247 HYPERVISOR: exec_cmd: nio create_udp udp-5b00d001-8f15-45b7-9f45-89042b842b90 10014 127.0.0.1 10015 
+Mar 15 08:42:12.249 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R2 3 0 udp-5b00d001-8f15-45b7-9f45-89042b842b90 
+Mar 15 08:42:12.250 HYPERVISOR: exec_cmd: vm get_status R2 
+Mar 15 08:46:06.832 HYPERVISOR: exec_cmd: vm set_ghost_status R2 2 
+Mar 15 08:46:06.868 HYPERVISOR: exec_cmd: vm set_ghost_file R2 C:\Users\nelly\GNS3\projects\NAS\project-files\dynamips\c7200-advipservicesk9-mz.152-4.S5.image-512.ghost 
+Mar 15 08:46:06.869 HYPERVISOR: exec_cmd: vm get_status R2 
+Mar 15 08:46:06.906 HYPERVISOR: exec_cmd: vm set_config R2 configs\i2_startup-config.cfg 
+Mar 15 08:46:06.907 HYPERVISOR: exec_cmd: vm start R2 
+Mar 15 08:46:37.300 HYPERVISOR: exec_cmd: vm extract_config R2 
+Mar 15 09:53:09.696 HYPERVISOR: exec_cmd: vm get_status R2 
+Mar 15 09:53:09.697 HYPERVISOR: exec_cmd: vm stop R2 
+Mar 15 09:53:09.970 VM: VM R2 shutdown.
+Mar 15 09:53:09.975 HYPERVISOR: exec_cmd: vm extract_config R2 
