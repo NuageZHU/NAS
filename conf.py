@@ -100,17 +100,9 @@ def write_file() :
     
     # Configuring OSPF for VRFs if VRF is applied. It redistributes BGP routes into OSPF within the VRF context,
     # and defines the network area for OSPF within each VRF. Additionally, it specifies OSPF networks for interfaces in the VRF.   
-    if r['vrf_apply']!=0:
-        for x in r['vrf']:
-            script+="router ospf "+str(x['id'])+" vrf "+x['name']+"\n"
-            script+=" redistribute bgp "+str(r['bgp']['AS_number'])+" metric "+str(r['bgp']['AS_number'])+" subnet\n"
-            script+=" network "+str(r['id'])+"."+str(r['id'])+"."+str(r['id'])+".0 0.0.0.255 area 0\n"
-            for y in r['interfaces']:
-                if y['vrf_apply']!=0:
-                    if y['vrf_id']==x['id']:
-                        script+=" network 192.168."+str(y['link'])+".0 0.0.0.255 area 0\n"
-                        script+="!\n"
 
+    
+    
     # Check if OSPF is applied for the router        
     if r['ospf']['ospf_apply']!=0:
         # Configure OSPF with the router's OSPF process ID
@@ -149,19 +141,27 @@ def write_file() :
         script+="router bgp "+str(r['bgp']['AS_number'])+"\n"
         script+=" bgp log-neighbor-changes\n"
         script+=" no bgp default ipv4-unicast\n"
-        script+=" neighbor "+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+" remote-as "+str(r['bgp']['AS_number'])+"\n"
-        script+=" neighbor "+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+" update-source Loopback0\n"
+        if r['bgp']['AS_number'] == 5:
+            script+=" neighbor "+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+" remote-as "+str(r['bgp']['AS_number'])+"\n"
+            script+=" neighbor "+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+" update-source Loopback0\n"
+        else:
+            script+=" neighbor 192.168."+str(r['id'])+".1 remote-as 5\n"
+            
+            
         #####
         #script+="ip ospf 1 area 0\n"
         #####
         script+=" !\n"
         script+=" address-family ipv4\n"
-        script+="   neighbor "+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+" activate\n"
+        if r['bgp']['AS_number'] == 5:
+            script+=" neighbor "+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id']) +" activate\n"
+        else:
+            script+="  neighbor 192.168."+str(r['id'])+".1 activate\n"
         script+=" exit-address-family\n"
         script+=" !\n"
         
         if r['bgp']['neighbor']['vpn_apply']!=0:
-            script+=" address-family vpnv4\n"
+            script+=" address-family vpnv4\n"            
             script+="  neighbor "+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+" activate\n"
             script+="  neighbor "+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+"."+str(r['bgp']['neighbor']['id'])+" send-community extended\n"
             script+=" exit-address-family\n"
@@ -169,12 +169,17 @@ def write_file() :
           
     # Apply VRF configuration if enabled   
     if r['vrf_apply']!=0:
+        petit_compteur = 0
         for x in r['vrf']:
             script+=" !\n"
             script+=" address-family ipv4 vrf "+x['name']+"\n"
             
-            script+="  redistribute ospf "+str(x['id'])+"\n"
+            script+="  neighbor 192.168."+str(r['interfaces'][petit_compteur]['link'])+".2 remote-as " + str(r['interfaces'][petit_compteur]['link'])+"\n"; 
+            script+="  neighbor 192.168."+str(x['id'])+".2 activate\n"; 
+            script+="  network 192.168."+str(r['interfaces'][petit_compteur]['link'])+".0\n"
+
             script+=" exit-address-family\n"
+            petit_compteur +=1
            
 
     script+="!\n"
@@ -195,10 +200,13 @@ def write_file() :
     script+="line vty 0 4\n"
     script+=" login\n!\n!\nend"
     return script		
-			
+		
+  
+petit_compteur = 1  	
 for r in json_object['routers'] :
     
     # Generate a file name based on the router's hostname and create a text file
-    finalname=r['hostname']+".txt"
+    finalname="i"+str(petit_compteur)+"_startup-config.cfg"
+    petit_compteur+=1
     with open(finalname, "w") as output:
         output.write(write_file())

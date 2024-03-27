@@ -55,10 +55,16 @@ interface GigabitEthernet1/0
 interface Loopback0
  ip address 1.1.1.1 255.255.255.255
 !
-router ospf 2
- network 192.168.1.0 0.0.0.255 area 0
- network 1.1.1.1 0.0.0.0 area 0
-!
+router bgp 1
+ bgp log-neighbor-changes
+ no bgp default ipv4-unicast
+ neighbor 111.111.111.111 remote-as 1
+ neighbor 111.111.111.111 update-source Loopback0
+ !
+ address-family ipv4
+  neighbor 192.168.1.1 activate
+ exit-address-family
+ !
 !
 ip forward-protocol nd
 !

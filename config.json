@@ -34,7 +34,7 @@
           ],
           "bgp":{
              "bgp_apply":true,
-             "AS_number":200,
+             "AS_number":5,
              "neighbor":{
                 "id":112,
                 "vpn_apply":true
@@ -91,7 +91,7 @@
         ],
         "bgp":{
            "bgp_apply":true,
-           "AS_number":200,
+           "AS_number":5,
            "neighbor":{
               "id":111,
               "vpn_apply":true
@@ -196,25 +196,30 @@
         "link":111,
         "vrf_apply":false,
         
-        "ospf_apply":true
+        "ospf_apply":false
      },
      
      {
         "interface_name":"Loopback0",
         "link":1,
         "vrf_apply":false,
-        "ospf_apply":true
+        "ospf_apply":false
      }
   ],
   "bgp":{
-     "bgp_apply":false
+     "bgp_apply":true,
+     "AS_number":1,
+     "neighbor":{
+        "id":111,
+        "vpn_apply":false
+     }
   },
   "IGP_protocol":"ospf",
   "vrf_apply":false,
   
   "ospf":{
-     "ospf_apply":true,
-     "process_id":2
+     "ospf_apply":false
+     
   }
 },
 {
@@ -227,25 +232,30 @@
           "link":112,
           "vrf_apply":false,
           
-          "ospf_apply":true
+          "ospf_apply":false
        },
        
        {
           "interface_name":"Loopback0",
           "link":2,
           "vrf_apply":false,
-          "ospf_apply":true
+          "ospf_apply":false
        }
     ],
     "bgp":{
-       "bgp_apply":false
-    },
+      "bgp_apply":true,
+      "AS_number":2,
+      "neighbor":{
+         "id":112,
+         "vpn_apply":false
+      }
+   },
     "IGP_protocol":"ospf",
     "vrf_apply":false,
     
     "ospf":{
-       "ospf_apply":true,
-       "process_id":2
+       "ospf_apply":false
+      
     }
   },
   {
@@ -258,25 +268,29 @@
           "link":111,
           "vrf_apply":false,
           
-          "ospf_apply":true
+          "ospf_apply":false
        },
        
        {
           "interface_name":"Loopback0",
           "link":3,
           "vrf_apply":false,
-          "ospf_apply":true
+          "ospf_apply":false
        }
     ],
     "bgp":{
-       "bgp_apply":false
-    },
+      "bgp_apply":true,
+      "AS_number":3,
+      "neighbor":{
+         "id":111,
+         "vpn_apply":false
+      }
+   },
     "IGP_protocol":"ospf",
     "vrf_apply":false,
     
     "ospf":{
-       "ospf_apply":true,
-       "process_id":3
+       "ospf_apply":false
     }
   },
   {
@@ -300,14 +314,18 @@
        }
     ],
     "bgp":{
-       "bgp_apply":false
+      "bgp_apply":true,
+      "AS_number":4,
+      "neighbor":{
+         "id":112,
+         "vpn_apply":false
+      }
     },
     "IGP_protocol":"ospf",
     "vrf_apply":false,
     
     "ospf":{
-       "ospf_apply":true,
-       "process_id":3
+       "ospf_apply":false
     }
   }
     ]
