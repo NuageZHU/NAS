@@ -31,6 +31,7 @@ This project was made possible thanks to the efforts and contributions of the fo
 - AHRIOUI Younes
 - BARTOSIK Johan
 - BENDIMERED Fadia
+- MORTIER Paul
 - VAUDEY Rémy
 - ZHU Kuangyun
 
