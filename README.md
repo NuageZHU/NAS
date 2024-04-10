@@ -6,7 +6,6 @@ This project implements automatic configuration of network devices in an MPLS ne
 ## Features
 - **Automation**: By reading the `config.json` configuration file, configuration scripts for routers within the network are generated automatically.
 - **Support for Multiple Network Devices**: Capable of configuring various network services according to the role of different routers (such as PE, P, CE) and their interfaces, including OSPF, BGP, VRF, etc.
-- **Dynamic Configuration Support**: Supports dynamic adjustments to configurations based on network requirements, such as VRF configurations, OSPF neighbor relationships, etc., without the need for manual device restarts.
 - **Configuration Backup**: The generated configuration scripts are saved in corresponding files for easy tracking and management.
 
 ## How to Use
